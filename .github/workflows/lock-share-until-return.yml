@@ -1,9 +1,7 @@
 name: Lock Share Until Return
 
 on:
-  push:
-    paths:
-      - '.github/workflows/lock-share-until-return.yml'
+  workflow_dispatch:
 
 permissions:
   contents: write
