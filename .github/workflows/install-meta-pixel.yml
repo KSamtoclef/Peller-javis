@@ -1,9 +1,7 @@
 name: Install Meta Pixel
 
 on:
-  push:
-    paths:
-      - '.github/workflows/install-meta-pixel.yml'
+  workflow_dispatch:
 
 permissions:
   contents: write
