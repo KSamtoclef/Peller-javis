@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>₦25,000 Giveaway Comments Demo</title>
+  <style>
+    *{box-sizing:border-box}
+    body{margin:0;background:#f0f2f5;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;color:#050505}
+    .wrap{max-width:520px;margin:0 auto;padding:14px}
+    .demo-banner{position:sticky;top:0;z-index:10;background:#fff3cd;border:1px solid #ffe69c;color:#664d03;padding:10px 12px;text-align:center;font-size:13px;font-weight:700;border-radius:10px;margin-bottom:12px}
+    .card{background:#fff;border-radius:16px;box-shadow:0 1px 2px rgba(0,0,0,.08),0 8px 24px rgba(0,0,0,.06);overflow:hidden}
+    .post-head{padding:16px}
+    .post-head h1{font-size:18px;margin:0 0 6px}
+    .post-head p{font-size:14px;line-height:1.45;margin:0;color:#65676b}
+    .summary{display:flex;justify-content:space-between;align-items:center;padding:10px 16px 8px;font-size:13px;color:#65676b}
+    .reaction-stack{display:flex;align-items:center;gap:6px}
+    .reaction-icons{display:inline-flex}
+    .reaction{width:20px;height:20px;border-radius:50%;border:2px solid #fff;display:flex;align-items:center;justify-content:center;font-size:11px;color:#fff}
+    .reaction.like{background:#1b74e4;z-index:2}
+    .reaction.love{background:#f33e58;margin-left:-6px;z-index:1}
+    .counts{display:flex;gap:12px}
+    .bar{display:flex;border-top:1px solid #e4e6eb;border-bottom:1px solid #e4e6eb}
+    .bar button{flex:1;border:0;background:none;padding:10px 0;font-weight:600;font-size:14px;color:#65676b;cursor:pointer}
+    .bar button.active{color:#1b74e4}
+    .typing{min-height:22px;padding:5px 16px 0;font-size:12px;color:#65676b}
+    .comments{padding:6px 14px 12px;max-height:480px;overflow-y:auto;scroll-behavior:smooth}
+    .row{display:flex;gap:8px;margin:10px 0;animation:pop .28s ease}
+    .avatar{width:34px;height:34px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:12px}
+    .row.reply{margin-left:28px}
+    .row.reply .avatar{width:28px;height:28px;font-size:10px}
+    .col{flex:1;min-width:0}
+    .bubble{background:#f0f2f5;border-radius:16px;padding:8px 12px 7px;display:inline-block;max-width:100%}
+    .name{font-weight:700;font-size:13px;display:block;margin-bottom:2px}
+    .text{font-size:14px;line-height:1.35;overflow-wrap:anywhere}
+    .actions{display:flex;gap:8px;align-items:center;margin:3px 0 0 10px;font-size:12px;color:#65676b}
+    .actions button{border:0;background:none;padding:0;color:#65676b;font-weight:700;cursor:pointer}
+    .actions button.liked{color:#f33e58}
+    .replies{margin-left:12px;padding-left:12px;border-left:2px solid #e4e6eb}
+    .composer{border-top:1px solid #e4e6eb;padding:10px 14px 12px;display:flex;gap:8px;align-items:center}
+    .composer input{flex:1;min-width:0;border:0;background:#f0f2f5;border-radius:20px;padding:10px 14px;font-size:16px;outline:none}
+    .composer button{width:40px;height:40px;border:0;border-radius:50%;background:#1b74e4;color:#fff;font-weight:700;cursor:pointer}
+    .share-preview{margin-top:14px;background:#fff;border-radius:14px;padding:14px;box-shadow:0 1px 2px rgba(0,0,0,.07)}
+    .share-preview h2{font-size:16px;margin:0 0 6px}
+    .share-preview p{font-size:13px;line-height:1.45;color:#65676b;margin:0 0 10px}
+    .share-preview button{width:100%;height:48px;border:0;border-radius:8px;background:#14563b;color:#fff;font-size:17px;font-weight:700;cursor:pointer}
+    .share-preview button:disabled{opacity:.65;cursor:not-allowed}
+    .progress{height:13px;background:#e4e6eb;border-radius:999px;overflow:hidden;margin-top:10px}
+    .progress span{display:block;height:100%;width:0;background:#098105;transition:width .3s}
+    .progress-text{text-align:right;font-size:12px;color:#65676b;margin-top:4px}
+    @keyframes pop{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="demo-banner">DEMO PREVIEW — simulated comments and engagement for setup review only</div>
+
+    <section class="card">
+      <div class="post-head">
+        <h1>Peller & Jarvis ₦25,000 Cash Giveaway</h1>
+        <p>Join the wedding celebration, complete your registration and follow the sharing steps to continue.</p>
+      </div>
+
+      <div class="summary">
+        <div class="reaction-stack">
+          <span class="reaction-icons"><span class="reaction like">👍</span><span class="reaction love">♥</span></span>
+          <span id="likeTotal">2,418</span>
+        </div>
+        <div class="counts"><span><b id="commentTotal">8</b> comments</span><span id="shareTotal">684 shares</span></div>
+      </div>
+
+      <div class="bar">
+        <button id="postLike">👍 Like</button>
+        <button id="focusComment">💬 Comment</button>
+        <button id="postShare">↗ Share</button>
+      </div>
+
+      <div class="typing" id="typingStatus"></div>
+      <div class="comments" id="comments"></div>
+
+      <form class="composer" id="composer">
+        <input id="commentInput" maxlength="200" placeholder="Write a comment…" autocomplete="off">
+        <button type="submit">➤</button>
+      </form>
+    </section>
+
+    <section class="share-preview">
+      <h2>Protected WhatsApp Share Flow</h2>
+      <p>One tap locks the button. Progress is added only after the page is hidden and the user returns.</p>
+      <button id="shareButton">SHARE ON WHATSAPP</button>
+      <div class="progress"><span id="shareFill"></span></div>
+      <div class="progress-text" id="sharePercent">0%</div>
+    </section>
+  </div>
+
+  <script>
+    (() => {
+      const NAMES = [
+        "Chinedu Okafor","Aisha Bello","Oluwaseun Adeyemi","Emeka Nwosu",
+        "Fatima Usman","Ibrahim Musa","Blessing Eze","David Ojo",
+        "Mercy Johnson","Ahmed Sani","Esther Okon","Samuel Adewale",
+        "Ngozi Obi","Tunde Adebayo","Zainab Garba","Precious Uche"
+      ];
+
+      const COLORS = ["#f87171","#fbbf24","#34d399","#60a5fa","#a78bfa","#f472b6","#38bdf8","#fb923c","#4ade80","#c084fc"];
+
+      const TOP_COMMENTS = [
+        "I just completed my ₦25,000 cash giveaway registration. Waiting for the next update 🙏",
+        "My share progress updated after I returned from WhatsApp.",
+        "Congratulations to Peller and Jarvis ❤️ This is a beautiful celebration.",
+        "I have completed the steps and submitted my details successfully.",
+        "Who else is joining the ₦25,000 giveaway today? 🔥",
+        "I finished sharing to my WhatsApp groups. Waiting for review now.",
+        "The registration process was easy to follow on my phone.",
+        "My friend told me about this wedding giveaway, so I just joined.",
+        "I reached the final stage after returning from WhatsApp each time.",
+        "Good luck to everyone participating in the ₦25,000 cash giveaway.",
+        "I have completed my registration. Hope I get selected 🤞",
+        "The share button locked properly and updated when I came back.",
+        "What a lovely way to celebrate Peller and Jarvis 🎉",
+        "I just submitted mine now. Waiting for the final announcement.",
+        "I shared with my groups and the progress is moving gradually."
+      ];
+
+      const REPLIES = [
+        "Mine updated after I returned too.",
+        "Congratulations and good luck 🎉",
+        "I just completed mine as well.",
+        "Yes, you have to return to the page after each share.",
+        "I am waiting for the final review too.",
+        "The process worked smoothly for me.",
+        "Good luck everyone 🙏",
+        "I hope we all get selected.",
+        "I saw the same progress update on my phone.",
+        "Congratulations to the couple ❤️"
+      ];
+
+      const commentsEl = document.getElementById("comments");
+      const typingEl = document.getElementById("typingStatus");
+      const commentTotalEl = document.getElementById("commentTotal");
+      const likeTotalEl = document.getElementById("likeTotal");
+      const shareTotalEl = document.getElementById("shareTotal");
+      let commentTotal = 0;
+      let likeTotal = 2418;
+      let shareTotal = 684;
+      let postLiked = false;
+      const topComments = [];
+
+      const pick = arr => arr[Math.floor(Math.random() * arr.length)];
+      const initials = name => name.split(" ").map(v => v[0]).slice(0,2).join("").toUpperCase();
+      const colorFor = name => COLORS[Math.abs([...name].reduce((a,c)=>a+c.charCodeAt(0),0)) % COLORS.length];
+
+      function updateCounts(){
+        commentTotalEl.textContent = commentTotal.toLocaleString();
+        likeTotalEl.textContent = likeTotal.toLocaleString();
+        shareTotalEl.textContent = shareTotal.toLocaleString() + " shares";
+      }
+
+      function makeActions(isReply, repliesEl){
+        const actions = document.createElement("div");
+        actions.className = "actions";
+        const like = document.createElement("button");
+        like.type = "button";
+        like.textContent = "Like";
+        let liked = false;
+        like.addEventListener("click", () => {
+          liked = !liked;
+          like.classList.toggle("liked", liked);
+        });
+        actions.appendChild(like);
+        if(!isReply){
+          const reply = document.createElement("button");
+          reply.type = "button";
+          reply.textContent = "Reply";
+          reply.addEventListener("click", () => {
+            const text = prompt("Write a reply:");
+            if(text && text.trim()) addComment("You", text.trim(), true, repliesEl);
+          });
+          actions.appendChild(document.createTextNode("·"));
+          actions.appendChild(reply);
+        }
+        actions.appendChild(document.createTextNode("· Just now"));
+        return actions;
+      }
+
+      function addComment(name, text, isReply=false, targetReplies=null){
+        const row = document.createElement("div");
+        row.className = "row" + (isReply ? " reply" : "");
+        const avatar = document.createElement("div");
+        avatar.className = "avatar";
+        avatar.style.background = colorFor(name);
+        avatar.textContent = initials(name);
+        const col = document.createElement("div");
+        col.className = "col";
+        const bubble = document.createElement("div");
+        bubble.className = "bubble";
+        bubble.innerHTML = '<span class="name"></span><span class="text"></span>';
+        bubble.querySelector(".name").textContent = name;
+        bubble.querySelector(".text").textContent = text;
+        col.appendChild(bubble);
+        let repliesEl = targetReplies;
+        if(!isReply){
+          repliesEl = document.createElement("div");
+          repliesEl.className = "replies";
+          col.appendChild(makeActions(false, repliesEl));
+          col.appendChild(repliesEl);
+        } else {
+          col.appendChild(makeActions(true));
+        }
+        row.appendChild(avatar);
+        row.appendChild(col);
+        if(isReply && targetReplies){
+          targetReplies.appendChild(row);
+        } else {
+          commentsEl.prepend(row);
+          topComments.unshift(repliesEl);
+          if(topComments.length > 30) topComments.pop();
+        }
+        commentTotal++;
+        updateCounts();
+        return repliesEl;
+      }
+
+      function showTyping(name){
+        typingEl.textContent = name + " is typing…";
+      }
+
+      function simulate(){
+        const name = pick(NAMES);
+        showTyping(name);
+        setTimeout(() => {
+          typingEl.textContent = "";
+          if(topComments.length && Math.random() < .35){
+            addComment(name, pick(REPLIES), true, pick(topComments.slice(0,Math.min(4,topComments.length))));
+          } else {
+            addComment(name, pick(TOP_COMMENTS));
+          }
+        }, 850 + Math.random()*1100);
+      }
+
+      [
+        ["Aisha Bello","I just completed my ₦25,000 cash giveaway registration. Waiting for the next update 🙏"],
+        ["Chinedu Okafor","My share progress updated after I returned from WhatsApp."],
+        ["Blessing Eze","Congratulations to Peller and Jarvis ❤️"],
+        ["David Ojo","I have completed the steps and submitted my details successfully."],
+        ["Zainab Garba","Good luck to everyone participating in the ₦25,000 cash giveaway."]
+      ].reverse().forEach(([n,t]) => addComment(n,t));
+
+      addComment("Mercy Johnson","Mine updated after I returned too.",true,topComments[1]);
+      addComment("Samuel Adewale","I just completed mine as well.",true,topComments[3]);
+      addComment("Fatima Usman","Congratulations and good luck 🎉",true,topComments[4]);
+
+      document.getElementById("composer").addEventListener("submit", e => {
+        e.preventDefault();
+        const input = document.getElementById("commentInput");
+        const value = input.value.trim();
+        if(!value) return;
+        addComment("You", value);
+        input.value = "";
+        commentsEl.scrollTop = 0;
+      });
+
+      document.getElementById("focusComment").addEventListener("click", () => document.getElementById("commentInput").focus());
+      document.getElementById("postLike").addEventListener("click", e => {
+        postLiked = !postLiked;
+        likeTotal += postLiked ? 1 : -1;
+        e.currentTarget.classList.toggle("active",postLiked);
+        updateCounts();
+      });
+      document.getElementById("postShare").addEventListener("click", () => {
+        shareTotal++;
+        updateCounts();
+      });
+
+      setInterval(() => { if(Math.random() < .7){ likeTotal++; updateCounts(); } }, 5200);
+      setInterval(() => { if(Math.random() < .35){ shareTotal++; updateCounts(); } }, 9800);
+      setTimeout(function loop(){ simulate(); setTimeout(loop,3000+Math.random()*1800); },1800);
+
+      const shareButton = document.getElementById("shareButton");
+      const shareFill = document.getElementById("shareFill");
+      const sharePercent = document.getElementById("sharePercent");
+      const PENDING = "demoCashSharePending";
+      const LEFT = "demoCashShareLeft";
+      const PROGRESS = "demoCashShareProgress";
+      const STEPS = [40,20,15,10,5,4,3,2,1];
+      let progress = Number(localStorage.getItem(PROGRESS) || 0);
+
+      function renderProgress(){
+        progress = Math.min(100,Math.max(0,progress));
+        shareFill.style.width = progress + "%";
+        sharePercent.textContent = progress + "%";
+        if(progress >= 100){
+          shareButton.disabled = true;
+          shareButton.textContent = "SHARING COMPLETE";
+        }
+      }
+
+      function lockShare(locked){
+        shareButton.disabled = locked;
+        if(progress < 100) shareButton.textContent = locked ? "PLEASE WAIT…" : "SHARE ON WHATSAPP";
+      }
+
+      function completePending(){
+        if(sessionStorage.getItem(PENDING) !== "1" || sessionStorage.getItem(LEFT) !== "1") return;
+        sessionStorage.removeItem(PENDING);
+        sessionStorage.removeItem(LEFT);
+        const index = Number(localStorage.getItem(PROGRESS + "Step") || 0);
+        progress = Math.min(100,progress + STEPS[Math.min(index,STEPS.length-1)]);
+        localStorage.setItem(PROGRESS,String(progress));
+        localStorage.setItem(PROGRESS + "Step",String(index+1));
+        renderProgress();
+        if(progress < 100) lockShare(false);
+      }
+
+      document.addEventListener("visibilitychange",() => {
+        if(sessionStorage.getItem(PENDING) !== "1") return;
+        if(document.visibilityState === "hidden") sessionStorage.setItem(LEFT,"1");
+        if(document.visibilityState === "visible") completePending();
+      });
+      window.addEventListener("pagehide",() => {
+        if(sessionStorage.getItem(PENDING) === "1") sessionStorage.setItem(LEFT,"1");
+      });
+      window.addEventListener("pageshow",completePending);
+      window.addEventListener("focus",completePending);
+
+      shareButton.addEventListener("click",() => {
+        if(sessionStorage.getItem(PENDING) === "1" || progress >= 100) return;
+        sessionStorage.setItem(PENDING,"1");
+        sessionStorage.removeItem(LEFT);
+        lockShare(true);
+        window.location.href = "https://wa.me/?text=" + encodeURIComponent("Peller & Jarvis ₦25,000 Cash Giveaway Demo\n\nOpen this preview and review the sharing flow.");
+      });
+
+      renderProgress();
+      updateCounts();
+    })();
+  </script>
+</body>
+</html>
