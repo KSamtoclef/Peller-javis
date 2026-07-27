@@ -1,0 +1,37 @@
+name: Update WhatsApp launcher
+
+on:
+  push:
+    paths:
+      - '.github/workflows/update-whatsapp-launcher.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Update WhatsApp launcher only
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          path = Path('index.html')
+          text = path.read_text(encoding='utf-8')
+          old = 'function whatsappUrl(){const text=encodeURIComponent(buildShareText()),ua=navigator.userAgent||"";if(/Android/i.test(ua))return "intent://send?text="+text+"#Intent;scheme=whatsapp;package=com.whatsapp;end";return "whatsapp://send?text="+text;}'
+          new = 'function whatsappUrl(){return "whatsapp://send?text="+encodeURIComponent(buildShareText());}'
+          if old not in text:
+              raise SystemExit('Expected WhatsApp launcher code was not found; no changes made.')
+          path.write_text(text.replace(old, new, 1), encoding='utf-8')
+          PY
+      - name: Remove one-time workflow
+        run: rm .github/workflows/update-whatsapp-launcher.yml
+      - name: Commit change
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html .github/workflows/update-whatsapp-launcher.yml
+          git commit -m "Use WhatsApp app chooser for sharing"
+          git push
