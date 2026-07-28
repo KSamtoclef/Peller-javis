@@ -1,0 +1,60 @@
+name: Clean up sponsored prompts
+
+on:
+  push:
+    paths:
+      - '.github/workflows/cleanup-sponsored-prompts.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Remove sponsored cards and strengthen action text
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          path = Path('index.html')
+          text = path.read_text(encoding='utf-8')
+
+          replacements = {
+              'button{display:block;width:220px;height:50px;color:#fff;border:0;outline:0;font-size:20px;cursor:pointer;border-radius:6px;padding:0 10px;margin:10px auto;background:rgb(20,86,59)}':
+              'button{display:block;width:220px;height:50px;color:#fff;border:0;outline:0;font-size:20px;font-weight:700;cursor:pointer;border-radius:6px;padding:0 10px;margin:10px auto;background:rgb(20,86,59)}',
+              '.tip{font-size:14px;line-height:1.6}.title{text-align:center;font-size:15px;margin:8px 0}':
+              '.tip{font-size:14px;line-height:1.6}.title{text-align:center;font-size:16px;font-weight:700;margin:8px 0}',
+              '.share-note{padding:12px;background:#f7f7f7;border-radius:4px;margin:10px 0}':
+              '.share-note{padding:12px;background:#f7f7f7;border-radius:4px;margin:10px 0}.share-note b{font-weight:800}.share-note .amount{font-weight:700}',
+          }
+
+          for old, new in replacements.items():
+              if old not in text:
+                  raise SystemExit(f'Expected style not found: {old[:60]}')
+              text = text.replace(old, new, 1)
+
+          sponsored_css = '.sponsored-card{margin:12px 10px;padding:14px;border:1px solid #d7ded9;border-radius:8px;background:#f8faf9;text-align:center}.sponsored-label{font-size:10px;font-weight:700;letter-spacing:.8px;color:#6b746f;text-transform:uppercase}.sponsored-card p{font-size:13px;line-height:1.5;margin:6px 0 10px;color:#333}.sponsored-card button{width:100%;max-width:300px;margin:0 auto;background:#245c43;font-size:15px;height:44px}'
+          text = text.replace(sponsored_css, '')
+
+          cards = [
+              '  <div class="sponsored-card"><div class="sponsored-label">Sponsored offer — optional</div><p>Explore an external promotional offer. This is separate from registration.</p><button type="button" onclick="location.href=\'https://awkwardmonopoly.com/zkfsiqgma3?key=7fcbfd99661ec943edc23caf2592add8\'">VIEW SPONSORED OFFER</button></div>\n',
+              '      <div class="sponsored-card"><div class="sponsored-label">Sponsored offer — optional</div><p>You may view this external offer or continue with the registration steps below.</p><button type="button" onclick="location.href=\'https://awkwardmonopoly.com/zkfsiqgma3?key=7fcbfd99661ec943edc23caf2592add8\'">VIEW SPONSORED OFFER</button></div>\n'
+          ]
+          for card in cards:
+              if card not in text:
+                  raise SystemExit('Expected sponsored card not found; no changes made.')
+              text = text.replace(card, '', 1)
+
+          path.write_text(text, encoding='utf-8')
+          PY
+      - name: Remove one-time workflow
+        run: rm .github/workflows/cleanup-sponsored-prompts.yml
+      - name: Commit changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html .github/workflows/cleanup-sponsored-prompts.yml
+          git commit -m "Improve action visibility and remove sponsored cards"
+          git push
